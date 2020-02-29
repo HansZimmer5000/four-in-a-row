@@ -13,4 +13,5 @@ The TODOs are seperated in three types.
 Must-Haves: Things that are important and are done asap.
 Should-Haves: Things that are less important and should be done when time is existent.
 Nice-To-Haves: Things that are not important and maybe done when time is existent.
+
 - 
