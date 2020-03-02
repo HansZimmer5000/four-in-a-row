@@ -3,7 +3,7 @@ import unittest
 import game
 #from main import sum
 
-class TestSum(unittest.TestCase):
+class TestGameField(unittest.TestCase):
     def test_init_GameField(self):
         field_height = 2
         field_width = 3
@@ -40,6 +40,55 @@ class TestSum(unittest.TestCase):
         except IndexError:
             self.assertTrue(True)
 
+    def test_check_win_horizontal(self):
+        gameField = game.GameField(4,1)
+        gameField.field = [["A"],["A"],["A"],["A"]]
+        try:
+            gameField._GameField__check_win_horizontal(0,0)
+        except SystemExit:
+            pass
+        else:
+            self.assertTrue(False)
+
+    def test_check_win_vertical(self):
+        gameField = game.GameField(1,4)
+        gameField.field = [["A","A","A","A"]]
+        try:
+            gameField._GameField__check_win_vertical(0,0)
+        except SystemExit:
+            pass
+        else:
+            self.assertTrue(False)
+
+    def test_check_win_incline(self):
+        gameField = game.GameField(4,4)
+        gameField.field = [
+            ["A", gameField.empty_place,gameField.empty_place,gameField.empty_place],
+            [gameField.empty_place,"A",gameField.empty_place,gameField.empty_place],
+            [gameField.empty_place,gameField.empty_place,"A",gameField.empty_place],
+            [gameField.empty_place,gameField.empty_place,gameField.empty_place,"A"]
+        ]
+        try:
+            gameField._GameField__check_win_incline(0,0)
+        except SystemExit:
+            pass
+        else:
+            self.assertTrue(False)
+
+    def test_check_win_decline(self):
+        gameField = game.GameField(4,4)
+        gameField.field = [
+            [gameField.empty_place,gameField.empty_place,gameField.empty_place,"A"],
+            [gameField.empty_place,gameField.empty_place,"A",gameField.empty_place],
+            [gameField.empty_place,"A",gameField.empty_place,gameField.empty_place],
+            ["A", gameField.empty_place,gameField.empty_place,gameField.empty_place]
+        ]
+        try:
+            gameField._GameField__check_win_decline(0,3)
+        except SystemExit:
+            pass
+        else:
+            self.assertTrue(False)
 
 if __name__ == '__main__':
     unittest.main()

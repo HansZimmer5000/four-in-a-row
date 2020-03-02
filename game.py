@@ -78,9 +78,6 @@ class GameField:
             print("Inserted Number was not a number or not between 1 and",field_width,"!")   
             self.__game_round(current_player,current_round_no) 
 
-
-
-
     def __check_win_horizontal(self, current_col_index, current_height_index):
         if self.field[current_col_index][current_height_index] == self.field[current_col_index + 1][current_height_index] and self.field[current_col_index][current_height_index] == self.field[current_col_index + 2][current_height_index] and self.field[current_col_index][current_height_index] == self.field[current_col_index + 3][current_height_index]:
             print("-------------")
