@@ -4,17 +4,41 @@ import game
 #from main import sum
 
 class TestSum(unittest.TestCase):
-    def test_init_game(self):
-        field_width = 2
+    def test_init_GameField(self):
         field_height = 2
-        empty_place = "-"
-        field = game.init_game()
-        expected_field = [[empty_place]*field_height]*field_width
-        self.assertEqual(field, expected_field)
+        field_width = 3
 
-    def test_insert_token(self):
-        # insert_token(field, col_no, token)
-        pass
+        gameField = game.GameField(field_width,field_height)
+        is_field = gameField.field
+        expected_field = [[game.GameField.empty_place]*field_height]*field_width
+        self.assertEqual(is_field, expected_field)
+
+    def test_insert_token_pos(self):
+        gameField = game.GameField(1,2)
+
+        gameField.insert_token(1, "A")
+        is_field = gameField.field
+        expected_field = [["A", gameField.empty_place]]
+        self.assertEqual(is_field, expected_field)
+
+        gameField.insert_token(1,"B")
+        is_field = gameField.field
+        expected_field = [["A", "B"]]
+        self.assertEqual(is_field, expected_field)
+
+        gameField.insert_token(1,"B")
+        is_field = gameField.field
+        expected_field = [["A", "B"]]
+        self.assertEqual(is_field, expected_field)
+
+    def test_insert_token_neg(self):
+        gameField = game.GameField(1,2)
+
+        try:
+            gameField.insert_token(2, "A")
+            self.assertTrue(False, "IndexError is expected to be thrown!")
+        except IndexError:
+            self.assertTrue(True)
 
 
 if __name__ == '__main__':
