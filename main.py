@@ -1,7 +1,7 @@
 #!/bin/python
 
 empty_place="-"
-field_height=7
+field_height=6
 col_count=7
 player1_token = '\033[92mA\033[0m'
 player2_token = '\033[94mB\033[0m'
