@@ -71,7 +71,7 @@ def check_win_vertical(field):
                 exit()
             current_height += 1
 
-def check_win_schraeg_1(field):
+def check_win_incline(field):
     current_col = 0
     while current_col < (col_count - 3):
         current_height = 0
@@ -80,13 +80,13 @@ def check_win_schraeg_1(field):
                 break
             elif field[current_col][current_height] == field[current_col + 1][current_height + 1] and field[current_col][current_height] == field[current_col + 2][current_height + 2] and field[current_col][current_height] == field[current_col + 3][current_height + 3]:
                 print("-------------")
-                print(field[current_col][current_height], " Won the Game schraeg!")
+                print(field[current_col][current_height], " Won the Game incline!")
                 exit()
             current_height += 1
         current_col += 1
 
 
-def check_win_schraeg_2(field):
+def check_win_decline(field):
     current_col = 6
     while current_col > 2:
         current_height = 0
@@ -95,7 +95,7 @@ def check_win_schraeg_2(field):
                 break
             elif field[current_col][current_height] == field[current_col-1][current_height + 1] and field[current_col][current_height] == field[current_col - 2][current_height + 2] and field[current_col][current_height] == field[current_col - 3][current_height + 3]:
                 print("-------------")
-                print(field[current_col][current_height], " Won the Game schraeg!")
+                print(field[current_col][current_height], " Won the Game decline!")
                 exit()
             current_height += 1
         current_col -= 1
@@ -103,8 +103,8 @@ def check_win_schraeg_2(field):
 def check_win(field):
     check_win_horizontal(field)
     check_win_vertical(field)
-    check_win_schraeg_1(field)
-    check_win_schraeg_2(field)
+    check_win_incline(field)
+    check_win_decline(field)
 
 def game_round(field, current_player, current_round_no):
     print("---- ROUND NUMBER:", current_round_no, "-- Current PLayer:", current_player, "----")
