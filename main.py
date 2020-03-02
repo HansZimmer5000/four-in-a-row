@@ -106,6 +106,30 @@ def check_win(field):
     check_win_incline(field)
     check_win_decline(field)
 
+def check_win_horizontal_alt(field, current_col_index, current_height_index):
+    if field[current_col_index][current_height_index] == field[current_col_index + 1][current_height_index] and field[current_col_index][current_height_index] == field[current_col_index + 2][current_height_index] and field[current_col_index][current_height_index] == field[current_col_index + 3][current_height_index]:
+        print("-------------")
+        print(field[current_col_index][current_height_index], " Won the Game horizontal!")
+        exit()
+
+def check_win_vertical_alt(field, current_col_index, current_height_index):
+    if field[current_col_index][current_height_index] == field[current_col_index][current_height_index + 1] and field[current_col_index][current_height_index] == field[current_col_index][current_height_index + 2] and field[current_col_index][current_height_index] == field[current_col_index][current_height_index + 3]:
+        print("-------------")
+        print(field[current_col_index][current_height_index], " Won the Game vertical!")
+        exit()
+
+def check_win_incline_alt(field, current_col_index, current_height_index):
+    if field[current_col_index][current_height_index] == field[current_col_index + 1][current_height_index + 1] and field[current_col_index][current_height_index] == field[current_col_index + 2][current_height_index + 2] and field[current_col_index][current_height_index] == field[current_col_index + 3][current_height_index + 3]:
+        print("-------------")
+        print(field[current_col_index][current_height_index], " Won the Game incline!")
+        exit()
+
+def check_win_decline_alt(field, current_col_index, current_height_index):
+    if field[current_col_index][current_height_index] == field[current_col_index + 1][current_height_index - 1] and field[current_col_index][current_height_index] == field[current_col_index + 2][current_height_index - 2] and field[current_col_index][current_height_index] == field[current_col_index + 3][current_height_index - 3]:
+        print("-------------")
+        print(field[current_col_index][current_height_index], " Won the Game decline!")
+        exit()
+
 def check_win_alt(field):
     current_col_index = 0
     while current_col_index < col_count:
@@ -116,31 +140,19 @@ def check_win_alt(field):
 
                 # If there is space above: Check Vertical
                 if current_col_index < (col_count - 3):
-                    if field[current_col_index][current_height_index] == field[current_col_index][current_height_index + 1] and field[current_col_index][current_height_index] == field[current_col_index][current_height_index + 2] and field[current_col_index][current_height_index] == field[current_col_index][current_height_index + 3]:
-                        print("-------------")
-                        print(field[current_col_index][current_height_index], " Won the Game vertical!")
-                        exit()
+                    check_win_vertical_alt(field,current_col_index, current_height_index)
 
                 # If there is space right: Check horizontal
                 if current_height_index < (field_height - 3):
-                    if field[current_col_index][current_height_index] == field[current_col_index + 1][current_height_index] and field[current_col_index][current_height_index] == field[current_col_index + 2][current_height_index] and field[current_col_index][current_height_index] == field[current_col_index + 3][current_height_index]:
-                        print("-------------")
-                        print(field[current_col_index][current_height_index], " Won the Game horizontal!")
-                        exit()
+                    check_win_horizontal_alt(field, current_col_index, current_height_index)
 
                 # If there is space above & right: Check incline
                 if (current_col_index < (col_count - 3) and current_height_index < (field_height - 3)):
-                    if field[current_col_index][current_height_index] == field[current_col_index + 1][current_height_index + 1] and field[current_col_index][current_height_index] == field[current_col_index + 2][current_height_index + 2] and field[current_col_index][current_height_index] == field[current_col_index + 3][current_height_index + 3]:
-                        print("-------------")
-                        print(field[current_col_index][current_height_index], " Won the Game incline!")
-                        exit()
+                    check_win_incline_alt(field, current_col_index, current_height_index)
 
                 # If there is space under & right: Check decline
                 if (current_col_index < (col_count - 3) and current_height_index > 2):
-                    if field[current_col_index][current_height_index] == field[current_col_index + 1][current_height_index - 1] and field[current_col_index][current_height_index] == field[current_col_index + 2][current_height_index - 2] and field[current_col_index][current_height_index] == field[current_col_index + 3][current_height_index - 3]:
-                        print("-------------")
-                        print(field[current_col_index][current_height_index], " Won the Game decline!")
-                        exit()
+                    check_win_decline_alt(field, current_col_index, current_height_index)
 
             current_height_index += 1
         current_col_index += 1
