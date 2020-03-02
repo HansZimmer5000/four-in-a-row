@@ -27,13 +27,13 @@ def print_field(field):
         current_height -= 1
 
 def insert_token(field, col_no, token):
-    col = field[col_no-1]
-    current_index = 0
-    while current_index < col_count:
-        if col[current_index] == empty_place:
-            col[current_index] = token
+    col = field[col_no - 1]
+    current_height = 0
+    while current_height < col_count:
+        if col[current_height] == empty_place:
+            col[current_height] = token
             break
-        current_index += 1
+        current_height += 1
     return field
 
 def get_input():
@@ -47,10 +47,10 @@ def check_win_horizontal(field):
     current_height = 0
     while current_height < field_height:
         current_col = 0
-        while current_col < 4:
+        while current_col < (col_count - 3):
             if field[current_col][current_height] == empty_place:
                 break
-            elif field[current_col][current_height] == field[current_col+1][current_height] and field[current_col][current_height] == field[current_col+2][current_height] and field[current_col][current_height] == field[current_col+3][current_height]:
+            elif field[current_col][current_height] == field[current_col + 1][current_height] and field[current_col][current_height] == field[current_col + 2][current_height] and field[current_col][current_height] == field[current_col + 3][current_height]:
                 print("-------------")
                 print(field[current_col][current_height], " Won the Game horizontally!")
                 exit()
@@ -61,24 +61,24 @@ def check_win_horizontal(field):
 
 def check_win_vertical(field):
     for col in field:
-        current_index = 0
-        while current_index < 4:
-            if col[current_index] == empty_place:
+        current_height = 0
+        while current_height < (field_height - 3):
+            if col[current_height] == empty_place:
                 break
-            elif col[current_index] == col[current_index+1] and col[current_index] == col[current_index + 2] and col[current_index] == col[current_index+3]:
+            elif col[current_height] == col[current_height + 1] and col[current_height] == col[current_height + 2] and col[current_height] == col[current_height + 3]:
                 print("-------------")
-                print(col[current_index], " Won the Game vertically!")
+                print(col[current_height], " Won the Game vertically!")
                 exit()
-            current_index += 1
+            current_height += 1
 
 def check_win_schraeg_1(field):
     current_col = 0
-    while current_col < 4:
+    while current_col < (col_count - 3):
         current_height = 0
-        while current_height < 4:
+        while current_height < (field_height - 3):
             if field[current_col][current_height] == empty_place:
                 break
-            elif field[current_col][current_height] == field[current_col+1][current_height+1] and field[current_col][current_height] == field[current_col+2][current_height+2] and field[current_col][current_height] == field[current_col+3][current_height+3]:
+            elif field[current_col][current_height] == field[current_col + 1][current_height + 1] and field[current_col][current_height] == field[current_col + 2][current_height + 2] and field[current_col][current_height] == field[current_col + 3][current_height + 3]:
                 print("-------------")
                 print(field[current_col][current_height], " Won the Game schraeg!")
                 exit()
@@ -90,10 +90,10 @@ def check_win_schraeg_2(field):
     current_col = 6
     while current_col > 2:
         current_height = 0
-        while current_height < 4:
+        while current_height < (field_height-3):
             if field[current_col][current_height] == empty_place:
                 break
-            elif field[current_col][current_height] == field[current_col-1][current_height+1] and field[current_col][current_height] == field[current_col-2][current_height+2] and field[current_col][current_height] == field[current_col-3][current_height+3]:
+            elif field[current_col][current_height] == field[current_col-1][current_height + 1] and field[current_col][current_height] == field[current_col - 2][current_height + 2] and field[current_col][current_height] == field[current_col - 3][current_height + 3]:
                 print("-------------")
                 print(field[current_col][current_height], " Won the Game schraeg!")
                 exit()
@@ -120,7 +120,7 @@ def game_round(field, current_player, current_round_no):
         
         print_field(next_field)
         check_win(next_field)
-        game_round(next_field, next_player, current_round_no+1)
+        game_round(next_field, next_player, current_round_no + 1)
     except ValueError:
         print("Inserted Number was not a number or not between 1 and",col_count,"!")   
         game_round(field, current_player,current_round_no) 
