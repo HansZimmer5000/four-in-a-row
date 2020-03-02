@@ -138,13 +138,13 @@ def check_win_alt(field):
 
             if field[current_col_index][current_height_index] != empty_place:
 
-                # If there is space above: Check Vertical
+                # If there is space above: Check Horizontal
                 if current_col_index < (col_count - 3):
-                    check_win_vertical_alt(field,current_col_index, current_height_index)
-
-                # If there is space right: Check horizontal
-                if current_height_index < (field_height - 3):
                     check_win_horizontal_alt(field, current_col_index, current_height_index)
+
+                # If there is space right: Check Vertical
+                if current_height_index < (field_height - 3):
+                    check_win_vertical_alt(field,current_col_index, current_height_index)
 
                 # If there is space above & right: Check incline
                 if (current_col_index < (col_count - 3) and current_height_index < (field_height - 3)):
