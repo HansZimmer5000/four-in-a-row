@@ -3,8 +3,11 @@
 empty_place="-"
 field_height=6
 field_width=7
-player1_token = '\033[92mA\033[0m'
-player2_token = '\033[94mB\033[0m'
+player1_color = '\033[92m'
+player2_color = '\033[94m'
+blank_color = '\033[0m'
+player1_token = player1_color + "A" + blank_color
+player2_token = player2_color + "B" + blank_color
 
 def init_game():
     empty_col = [empty_place] * field_height
