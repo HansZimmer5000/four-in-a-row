@@ -2,7 +2,7 @@
 
 empty_place="-"
 field_height=6
-col_count=7
+field_width=7
 player1_token = '\033[92mA\033[0m'
 player2_token = '\033[94mB\033[0m'
 
@@ -29,7 +29,7 @@ def print_field(field):
 def insert_token(field, col_no, token):
     col = field[col_no - 1]
     current_height = 0
-    while current_height < col_count:
+    while current_height < field_width:
         if col[current_height] == empty_place:
             col[current_height] = token
             break
@@ -39,7 +39,7 @@ def insert_token(field, col_no, token):
 def get_input():
     current_col_raw = input()
     current_col = int(current_col_raw)
-    if current_col < 1 or current_col > col_count:
+    if current_col < 1 or current_col > field_width:
         raise ValueError()
     return current_col
 
@@ -47,7 +47,7 @@ def check_win_horizontal(field):
     current_height = 0
     while current_height < field_height:
         current_col = 0
-        while current_col < (col_count - 3):
+        while current_col < (field_width - 3):
             if field[current_col][current_height] == empty_place:
                 break
             elif field[current_col][current_height] == field[current_col + 1][current_height] and field[current_col][current_height] == field[current_col + 2][current_height] and field[current_col][current_height] == field[current_col + 3][current_height]:
@@ -73,7 +73,7 @@ def check_win_vertical(field):
 
 def check_win_incline(field):
     current_col = 0
-    while current_col < (col_count - 3):
+    while current_col < (field_width - 3):
         current_height = 0
         while current_height < (field_height - 3):
             if field[current_col][current_height] == empty_place:
@@ -132,14 +132,14 @@ def check_win_decline_alt(field, current_col_index, current_height_index):
 
 def check_win_alt(field):
     current_col_index = 0
-    while current_col_index < col_count:
+    while current_col_index < field_width:
         current_height_index = 0
         while current_height_index < field_height:
 
             if field[current_col_index][current_height_index] != empty_place:
 
                 # If there is space above: Check Horizontal
-                if current_col_index < (col_count - 3):
+                if current_col_index < (field_width - 3):
                     check_win_horizontal_alt(field, current_col_index, current_height_index)
 
                 # If there is space right: Check Vertical
@@ -147,11 +147,11 @@ def check_win_alt(field):
                     check_win_vertical_alt(field,current_col_index, current_height_index)
 
                 # If there is space above & right: Check incline
-                if (current_col_index < (col_count - 3) and current_height_index < (field_height - 3)):
+                if (current_col_index < (field_width - 3) and current_height_index < (field_height - 3)):
                     check_win_incline_alt(field, current_col_index, current_height_index)
 
                 # If there is space under & right: Check decline
-                if (current_col_index < (col_count - 3) and current_height_index > 2):
+                if (current_col_index < (field_width - 3) and current_height_index > 2):
                     check_win_decline_alt(field, current_col_index, current_height_index)
 
             current_height_index += 1
@@ -173,7 +173,7 @@ def game_round(field, current_player, current_round_no):
         check_win_alt(next_field)
         game_round(next_field, next_player, current_round_no + 1)
     except ValueError:
-        print("Inserted Number was not a number or not between 1 and",col_count,"!")   
+        print("Inserted Number was not a number or not between 1 and",field_width,"!")   
         game_round(field, current_player,current_round_no) 
 
 if __name__ == "__main__":
