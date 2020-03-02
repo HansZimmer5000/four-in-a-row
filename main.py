@@ -1,11 +1,16 @@
 #!/bin/python
 
+# Field Configurations
 empty_place="-"
+
 field_height=6
 field_width=7
+
+# Player Configuration
 player1_color = '\033[92m'
 player2_color = '\033[94m'
 blank_color = '\033[0m'
+
 player1_token = player1_color + "A" + blank_color
 player2_token = player2_color + "B" + blank_color
 
@@ -161,6 +166,7 @@ def check_win_alt(field):
         current_col_index += 1
 
 def game_round(field, current_player, current_round_no):
+    print_field(field)
     print("---- ROUND NUMBER:", current_round_no, "-- Current PLayer:", current_player, "----")
     try:
         current_col = get_input()
@@ -172,7 +178,6 @@ def game_round(field, current_player, current_round_no):
         else:
             next_player = player1_token
         
-        print_field(next_field)
         check_win_alt(next_field)
         game_round(next_field, next_player, current_round_no + 1)
     except ValueError:
@@ -182,7 +187,6 @@ def game_round(field, current_player, current_round_no):
 if __name__ == "__main__":
     try:
         field = init_game()
-        print_field(field)
         game_round(field, player1_token, 1)
     except KeyboardInterrupt:  
         print(" Live long and prosper!")
