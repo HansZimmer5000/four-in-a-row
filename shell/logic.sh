@@ -27,7 +27,7 @@ init_game(){
 }
 
 # Param 1: A field
-# Returns a string which is expected to be printed with 'printf'
+# Returns a string which is expected to be printed with 'printf' due to newlines '\n'
 print_field(){
     field="$1"  
     #echo "$field"
