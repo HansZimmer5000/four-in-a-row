@@ -1,10 +1,6 @@
 #!/bin/sh
 
-
-
-
-
-
+source ./logic.sh
 
 
 
