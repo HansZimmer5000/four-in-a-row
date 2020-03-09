@@ -6,6 +6,7 @@ The game is based upon a play field of the size of 7x6 fields (width x height). 
 ## How to play this implementation
 
 Execute python file with python Version 3(.8).
+Execute shell file with linux bash or similar.
 
 ## TODOs
 
