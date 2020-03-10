@@ -57,10 +57,15 @@ game_round(){
     # get_input
     # insert_token
     # check_win
+
+    if [ "$2" == "A" ]; then;
+        game_round "$new_field" "B"
+    else
+        game_round "$new_field" "A"
+    fi
 }
 
 start_game(){
     field="$(init_game 7 6)"
-
     game_round "$field" "A"
 }

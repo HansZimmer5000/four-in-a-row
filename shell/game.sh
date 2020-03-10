@@ -2,7 +2,4 @@
 
 source ./logic.sh
 
-
-
-
-EMPTY_PLACE="-"
+start_game
