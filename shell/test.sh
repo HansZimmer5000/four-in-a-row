@@ -29,15 +29,17 @@ fi
 ### Test print_field
 
 print="$(print_field '-;- -;- -;-')"
-if [ "$print" == "- -\n- -\n- -" ]; then
+if [ "$print" == "- -
+- -
+- -" ]; then
     printf "."
 else
     printf "\nprint_field_1 Failed with field: $print\n"
 fi
 
 print="$(print_field '1;3;5 0;2;4')"
-
-if [ "$print" == "1 3 5\n0 2 4" ]; then
+if [ "$print" == "1 3 5
+0 2 4" ]; then
     printf "."
 else
     printf "\nprint_field_2 Failed with field: $print\n"
