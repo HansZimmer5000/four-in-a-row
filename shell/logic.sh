@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Game Field is a string
+# The top row comes first, then after and after the other rows.
+# Rows are seperated by a blank space ' '
+# Columns are seperated by a semi colon ';'
+# Empty Places are "$empty_place" texts
+
 empty_place="-"
 
 # Param 1 == field width
@@ -28,12 +34,12 @@ init_game(){
 }
 
 # Param 1: A field
-# Returns a string which is expected to be printed with 'printf' due to newlines '\n'
+# Returns a string which is expected to be printed with 'printf "%s.."' due to newlines '\n'
 print_field(){
     field="$1"
 
     print="${field//' '/'\n'}" 
-    echo "${print//';'/' '}"   
+    printf "%s${print//';'/' '}\n"   
 }
 
 # Returns number from stdin
@@ -73,10 +79,10 @@ check_win(){
 # Param 1: Field
 # Param 2: Current Player Token
 game_round(){
-    echo "NIPY"
+    print_field "$1"
 
     selected_column=$(get_input)
-    insert_token "$1" $selected_column  "$2"
+    updated_field=$(insert_token "$1" $selected_column  "$2")
     # check_win
 
     if [ "$2" == "A" ]; then
