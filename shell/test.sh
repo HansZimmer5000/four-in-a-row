@@ -43,8 +43,35 @@ else
     printf "\nprint_field_2 Failed with field: $print\n"
 fi
 
+### Test get_input
 
+field=$(insert_token "-;-;- -;-;-" 1 A)
+if [ "$field" == "-;-;- A;-;-" ]; then 
+    printf "."
+else
+    printf "\ninsert_token_1 Failed with field: $field\n"
+fi
 
+field=$(insert_token "-;-;- A;-;-" 1 B)
+if [ "$field" == "B;-;- A;-;-" ]; then 
+    printf "."
+else
+    printf "\ninsert_token_2 Failed with field: $field\n"
+fi
+
+field=$(insert_token "A;-;- A;-;-" 1 A)
+if [ "$field" == "A;-;- A;-;-" ]; then 
+    printf "."
+else
+    printf "\ninsert_token_3 Failed with field: $field\n"
+fi
+
+field=$(insert_token "-;-;- A;-;-" 3 A)
+if [ "$field" == "-;-;- A;-;A" ]; then 
+    printf "."
+else
+    printf "\ninsert_token_4 Failed with field: $field\n"
+fi
 
 ### Test get_input
 
@@ -63,6 +90,5 @@ if [ "$input" == "9" ]; then
 else
     printf "\nget_input_2 Failed with field: $input\n"
 fi
-
 
 printf "\nEnding\n"

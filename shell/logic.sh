@@ -1,19 +1,20 @@
 #!/bin/sh
 
+empty_place="-"
+
 # Param 1 == field width
 # Param 2 == field height
 init_game(){
     #Hint: Alternatively to string use Arrays ${row[@]}
 
-    empty_place="-"
     row=""
     field=""
 
     if [ "$1" -gt "0" ]; then
-        row="-"
+        row="$empty_place"
         current_width=1
         while [ "$1" -gt "$current_width" ]; do
-            row="$row;-"
+            row="$row;$empty_place"
             current_width=$((current_width+1))
         done
     fi
@@ -29,20 +30,40 @@ init_game(){
 # Param 1: A field
 # Returns a string which is expected to be printed with 'printf' due to newlines '\n'
 print_field(){
-    field="$1"  
-    #echo "$field"
+    field="$1"
 
     print="${field//' '/'\n'}" 
     echo "${print//';'/' '}"   
 }
 
+# Returns number from stdin
 get_input(){
     read -p "Enter Column Number: " input
     echo $input
 }
 
+# Param 1: Field
+# Param 2: Selected Column
+# Param 3: Player Token
 insert_token(){
-    echo "NIPY"
+    rows=($1)
+    current_index=$((${#rows[@]} - 1 ))
+    place_index=$(($2-1))
+
+    while [ $current_index -ge 0 ]; do
+        current_row="${rows[current_index]}"
+        current_row=(${current_row//';'/' '})
+        if [ "${current_row[place_index]}" ==  "$empty_place" ]; then
+            current_row[$place_index]=$3
+            current_row="${current_row[@]}"
+            current_row=(${current_row//' '/';'})
+            rows[$current_index]=${current_row[@]}
+            break
+        fi
+        current_index=$((current_index - 1))
+    done
+
+    echo ${rows[@]}
 }
 
 check_win(){
@@ -54,11 +75,11 @@ check_win(){
 game_round(){
     echo "NIPY"
 
-    # get_input
-    # insert_token
+    selected_column=$(get_input)
+    insert_token "$1" $selected_column  "$2"
     # check_win
 
-    if [ "$2" == "A" ]; then;
+    if [ "$2" == "A" ]; then
         game_round "$new_field" "B"
     else
         game_round "$new_field" "A"
