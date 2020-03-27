@@ -83,3 +83,12 @@ get_height(){
     height=${#rows[@]}
     echo $height
 }
+
+# Param 1: A field
+# Returns a string which is expected to be printed with 'printf "%s.."' due to newlines '\n'
+print_field(){
+    field="$1"
+
+    print="${field//' '/'\n'}" 
+    printf "%s${print//';'/' '}\n"   
+}

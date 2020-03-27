@@ -11,15 +11,6 @@ empty_place="-"
 source ./check.sh
 source ./field.sh
 
-# Param 1: A field
-# Returns a string which is expected to be printed with 'printf "%s.."' due to newlines '\n'
-print_field(){
-    field="$1"
-
-    print="${field//' '/'\n'}" 
-    printf "%s${print//';'/' '}\n"   
-}
-
 # Returns number from stdin
 get_input(){
     read -p "Enter Column Number: " input
@@ -61,7 +52,7 @@ check_win(){
         if [ -z "$winning_player" ]; then 
             winning_player=$(_check_win_vertical "$1")
             if [ -z "$winning_player" ]; then 
-                #winning_player=$(_check_win_incline "$1")
+                winning_player=$(_check_win_incline "$1")
                 if [ -z "$winning_player" ]; then
                     winning_player=$(_check_win_decline "$1") 
                 fi
