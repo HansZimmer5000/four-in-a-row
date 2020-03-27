@@ -9,9 +9,9 @@ defmodule Game do
   Starts the game with a 7x6 field. It returns a tuple consisting of the field, the size and the token of the player that plays the upcoming round.
   ## Examples
       iex> Game.start_game
-      {field,{7,6}, A}
   """
   def start_game do
-    "world"
+    #init_field
+    #game_round
   end
 end
