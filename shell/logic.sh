@@ -9,30 +9,12 @@
 empty_place="-"
 
 source ./check.sh
+source ./field.sh
 
 # Param 1 == field width
 # Param 2 == field height
 init_game(){
-    #Hint: Alternatively to string use Arrays ${row[@]}
-
-    row=""
-    field=""
-
-    if [ "$1" -gt "0" ]; then
-        row="$empty_place"
-        current_width=1
-        while [ "$1" -gt "$current_width" ]; do
-            row="$row;$empty_place"
-            current_width=$((current_width+1))
-        done
-    fi
-
-    current_height=0
-    while [ "$2" -gt "$current_height" ]; do
-        field="$field $row"
-        current_height=$((current_height+1))
-    done
-    echo $field
+    create_field $1 $2
 }
 
 # Param 1: A field
@@ -78,9 +60,9 @@ insert_token(){
 # Param 1: Field
 check_win(){
     _check_win_horizontal "$1"
-    #check_win_vertical "$1"
-    #check_win_incline "$1"
-    #check_win_decline "$1"
+    _check_win_vertical "$1"
+    _check_win_incline "$1"
+    _check_win_decline "$1"
 }
 
 # Param 1: Field
