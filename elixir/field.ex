@@ -1,6 +1,6 @@
 defmodule Field do
 
-    def get_empty_token do
+    def get_empty_token() do
         "-"
     end
 
