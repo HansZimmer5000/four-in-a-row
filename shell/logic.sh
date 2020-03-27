@@ -72,24 +72,24 @@ game_round(){
     height=$(get_height "$1")
 
     selected_column=$(get_input)
-    if [ $selected_column -le 0 ] || [ $selected_column -gt $width ]; then
+    while [ $selected_column -le 0 ] || [ $selected_column -gt $width ]; do
         echo "Please enter a number between 1 and $width"
-    else
-        #selected_column=$((selected_column - 1))
-        updated_field=$(insert_token "$1" $selected_column  "$2")
-        winning_player=$(check_win "$updated_field")
+        selected_column=$(get_input)
+    done
 
-        if [ -z "$winning_player" ]; then
-            if [ "$2" == "A" ]; then
-                game_round "$updated_field" "B"
-            else
-                game_round "$updated_field" "A"
-            fi
+    updated_field=$(insert_token "$1" $selected_column  "$2")
+    winning_player=$(check_win "$updated_field")
+
+    if [ -z "$winning_player" ]; then
+        if [ "$2" == "A" ]; then
+            game_round "$updated_field" "B"
         else
-            echo
-            echo "$winning_player has won the game:"
-            print_field "$updated_field"
+            game_round "$updated_field" "A"
         fi
+    else
+        echo
+        echo "$winning_player has won the game:"
+        print_field "$updated_field"
     fi
 }
 
