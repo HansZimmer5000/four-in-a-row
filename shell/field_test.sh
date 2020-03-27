@@ -29,24 +29,30 @@ fi
 ### Test get_row
 
 row="$(get_row 'A;-;- -;B;-' 0)"
-if [ "$row" == "A - -" ]; then
+if [ "$row" == "- B -" ]; then
     printf "."
 else
     printf "\nget_row_1 Failed with field: $row\n"
+fi
+
+row="$(get_row 'A;-;- -;B;-' 1)"
+if [ "$row" == "A - -" ]; then
+    printf "."
+else
+    printf "\nget_row_2 Failed with field: $row\n"
 fi
 
 row="$(get_row 'A;-;- -;B;-' 2)"
 if [ "$row" == "" ]; then
     printf "."
 else
-    printf "\nget_row_2 Failed with field: $row\n"
+    printf "\nget_row_3 Failed with field: $row\n"
 fi
-
 
 ### Test get_column
 
 column="$(get_column 'A;-;- -;B;-' 0)"
-if [ "$column" == "A -" ]; then
+if [ "$column" == "- A" ]; then
     printf "."
 else
     printf "\nget_column_1 Failed with field: $column\n"
@@ -61,8 +67,8 @@ fi
 
 ### Test get_token
 
-token="$(get_token 'A;-;- -;B;-' 0 0)"
-if [ "$token" == "A" ]; then
+token="$(get_token 'A;-;- -;B;-' 0 1)"
+if [ "$token" == "B" ]; then
     printf "."
 else
     printf "\nget_token_1 Failed with field: $token\n"

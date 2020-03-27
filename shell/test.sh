@@ -3,28 +3,7 @@
 source ./logic.sh
 printf "Begin Testing: "
 
-### Test init_game
-
-field="$(init_game 3 2)"
-if [ "$field" == "-;-;- -;-;-" ]; then
-    printf "."
-else
-    printf "\ninit_game_1 Failed with field: $field\n"
-fi
-
-field="$(init_game 1 1)"
-if [ "$field" == "-" ]; then
-    printf "."
-else
-    printf "\ninit_game_2 Failed with field: $field\n"
-fi
-
-field="$(init_game 7 6)"
-if [ "$field" == "-;-;-;-;-;-;- -;-;-;-;-;-;- -;-;-;-;-;-;- -;-;-;-;-;-;- -;-;-;-;-;-;- -;-;-;-;-;-;-" ]; then
-    printf "."
-else
-    printf "\ninit_game_2 Failed with field: $field\n"
-fi
+source ./field_test.sh
 
 ### Test print_field
 
@@ -78,7 +57,7 @@ fi
 ### Test check_win
 
 winning_player="$(check_win '-;- -;- -;-')"
-if [ "$winning_player" == "" ]; then
+if [ "$winning_player" == "Field (3 x 2) is to small to find a four-in-a-row winner" ]; then
     printf "."
 else
     printf "\ncheck_win_1 Failed with winning_player: $winning_player\n"
@@ -98,14 +77,16 @@ else
     printf "\ncheck_win_3 Failed with winning_player: $winning_player\n"
 fi
 
-winning_player="$(check_win 'A;-;-;- -;A;-;- -;-;A;- -;-;-;A')"
+# Decline
+winning_player="$(_check_win_decline 'A;42;43;44 31;A;33;34 21;22;A;24 11;12;13;A')"
 if [ "$winning_player" == "A" ]; then
     printf "."
 else
     printf "\ncheck_win_4 Failed with winning_player: $winning_player\n"
 fi
 
-winning_player="$(check_win '-;-;-;A -;-;A;- -;A;-;- A;-;-;-')"
+# Incline
+winning_player="$(_check_win_incline '41;42;43;A 31;32;A;34 21;A;23;24 A;12;13;14')"
 if [ "$winning_player" == "A" ]; then
     printf "."
 else

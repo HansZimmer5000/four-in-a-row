@@ -30,9 +30,12 @@ create_field(){
 # Beware: Returned as array with spaces between tokens
 get_row(){
     rows=($1)
-    row=${rows[$2]}
-    row=${row[@]//';'/' '}
-    echo $row
+    height=$((${#rows[@]} - 1))
+    if [ $2 -le $height ]; then
+        row=${rows[$(($height - $2))]}
+        row=${row[@]//';'/' '}
+        echo $row
+    fi
 }
 
 # Param 1: field
@@ -40,13 +43,13 @@ get_row(){
 # Beware: Returned as array with spaces between tokens
 get_column(){
     rows=($1)
-    rows_count=${#rows[@]}
+    width=$(($(get_width "$1") - 1))
     result=""
 
-    if [ $2 -le $rows_count ]; then
+    if [ $2 -le $width ]; then
         for current_row in ${rows[@]}; do
             current_row=(${current_row//';'/' '})
-            result="$result ${current_row[$2]}"
+            result="${current_row[$2]} $result"
         done
     fi
 
@@ -57,15 +60,11 @@ get_column(){
 # Param 2: 0-n row index
 # Param 3: 0-n column index
 get_token(){
-    rows=($1)
-    rows_count=${#rows[@]}
-    result=""
-
-    row=${rows[$2]}
-    row=(${row//';'/' '})
-    token=${row[$3]}
-
-    echo $token
+    row=($(get_row "$1" $2))
+    if [ "$row" != "" ]; then
+        token=${row[$3]}
+        echo $token
+    fi
 }
 
 # Param 1: field
