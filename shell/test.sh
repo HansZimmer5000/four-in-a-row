@@ -45,7 +45,7 @@ else
     printf "\nprint_field_2 Failed with field: $print\n"
 fi
 
-### Test get_input
+### Test insert_token
 
 field=$(insert_token "-;-;- -;-;-" 1 A)
 if [ "$field" == "-;-;- A;-;-" ]; then 
@@ -73,6 +73,43 @@ if [ "$field" == "-;-;- A;-;A" ]; then
     printf "."
 else
     printf "\ninsert_token_4 Failed with field: $field\n"
+fi
+
+### Test check_win
+
+winning_player="$(check_win '-;- -;- -;-')"
+if [ "$winning_player" == "" ]; then
+    printf "."
+else
+    printf "\ncheck_win_1 Failed with winning_player: $winning_player\n"
+fi
+
+winning_player="$(check_win 'A;- A;- A;- A;-')"
+if [ "$winning_player" == "A" ]; then
+    printf "."
+else
+    printf "\ncheck_win_2 Failed with winning_player: $winning_player\n"
+fi
+
+winning_player="$(check_win 'A;A;A;A')"
+if [ "$winning_player" == "A" ]; then
+    printf "."
+else
+    printf "\ncheck_win_3 Failed with winning_player: $winning_player\n"
+fi
+
+winning_player="$(check_win 'A;-;-;- -;A;-;- -;-;A;- -;-;-;A')"
+if [ "$winning_player" == "A" ]; then
+    printf "."
+else
+    printf "\ncheck_win_4 Failed with winning_player: $winning_player\n"
+fi
+
+winning_player="$(check_win '-;-;-;A -;-;A;- -;A;-;- A;-;-;-')"
+if [ "$winning_player" == "A" ]; then
+    printf "."
+else
+    printf "\ncheck_win_5 Failed with winning_player: $winning_player\n"
 fi
 
 ### Test get_input

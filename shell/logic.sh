@@ -8,6 +8,8 @@
 
 empty_place="-"
 
+source ./check.sh
+
 # Param 1 == field width
 # Param 2 == field height
 init_game(){
@@ -56,6 +58,7 @@ insert_token(){
     current_index=$((${#rows[@]} - 1 ))
     place_index=$(($2-1))
 
+    # Go From Bottom to Top
     while [ $current_index -ge 0 ]; do
         current_row="${rows[current_index]}"
         current_row=(${current_row//';'/' '})
@@ -72,8 +75,12 @@ insert_token(){
     echo ${rows[@]}
 }
 
+# Param 1: Field
 check_win(){
-    echo "NIPY"
+    _check_win_horizontal "$1"
+    #check_win_vertical "$1"
+    #check_win_incline "$1"
+    #check_win_decline "$1"
 }
 
 # Param 1: Field
@@ -83,12 +90,16 @@ game_round(){
 
     selected_column=$(get_input)
     updated_field=$(insert_token "$1" $selected_column  "$2")
-    # check_win
+    winning_player=$(check_win "$updated_field")
 
-    if [ "$2" == "A" ]; then
-        game_round "$new_field" "B"
+    if [ -z "$winning_player" ]; then
+        if [ "$2" == "A" ]; then
+            game_round "$new_field" "B"
+        else
+            game_round "$new_field" "A"
+        fi
     else
-        game_round "$new_field" "A"
+        echo "$winning_player has won the game!"
     fi
 }
 
