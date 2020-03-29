@@ -1,5 +1,11 @@
 defmodule Check do
 
+    def check_win(rows) do
+        check_horizontal(rows) || check_vertical(rows) || check_incline(rows) || check_decline(rows)
+    end
+
+    ###
+
     def check_horizontal([]) do
         false
     end
