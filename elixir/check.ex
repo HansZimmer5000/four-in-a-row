@@ -1,7 +1,7 @@
 defmodule Check do
 
     def check_win(rows) do
-        check_horizontal(rows) || check_vertical(rows) || check_incline(rows) || check_decline(rows)
+        check_horizontal(rows) || check_vertical(rows) || check_diagonal(rows, :incline) || check_diagonal(rows, :diagonal)
     end
 
     ### TODO Refactor following code
@@ -34,33 +34,18 @@ defmodule Check do
         end
     end
 
-    def check_incline(rows) when (length rows) < 4 do
+    def check_diagonal(rows,_) when (length rows) < 4 do
         false
     end
 
-    def check_incline([row_1,row_2,row_3,row_4 | rest_rows]) do
+    def check_diagonal([row_1,row_2,row_3,row_4 | rest_rows], diagonal) do
         # Traverse columns to rows
 
         # use check_horizontal
-        if _check_diagonal(row_1,row_2,row_3,row_4, :incline) do
+        if _check_diagonal(row_1,row_2,row_3,row_4, diagonal) do
             true
         else
-            check_incline([row_2,row_3,row_4|rest_rows])
-        end
-    end
-
-    def check_decline(rows) when (length rows) < 4 do
-        false
-    end
-
-    def check_decline([row_1,row_2,row_3,row_4 | rest_rows]) do
-        # Traverse columns to rows
-
-        # use check_horizontal
-        if _check_diagonal(row_1,row_2,row_3,row_4, :decline) do
-            true
-        else
-            check_decline([row_2,row_3,row_4|rest_rows])
+            check_diagonal([row_2,row_3,row_4|rest_rows], diagonal)
         end
     end
 

@@ -16,14 +16,14 @@ defmodule CheckTests do
     end
 
     test "check_incline" do
-        assert Check.check_incline([["A","-","-","-"], ["-","A","-","-"],["-","-","A","-"],["-","-","-","A"]]) == true
+        assert Check.check_diagonal([["A","-","-","-"], ["-","A","-","-"],["-","-","A","-"],["-","-","-","A"]], :incline) == true
 
-        assert Check.check_incline([["-","-","-","A"], ["-","-","A","-"],["-","A","-","-"],["A","-","-","-"]]) == false
+        assert Check.check_diagonal([["-","-","-","A"], ["-","-","A","-"],["-","A","-","-"],["A","-","-","-"]], :incline) == false
     end
 
     test "check_decline" do
-        assert Check.check_decline([["-","-","-","A"], ["-","-","A","-"],["-","A","-","-"],["A","-","-","-"]]) == true
+        assert Check.check_diagonal([["-","-","-","A"], ["-","-","A","-"],["-","A","-","-"],["A","-","-","-"]], :decline) == true
 
-        assert Check.check_decline([["A","-","-","-"], ["-","A","-","-"],["-","-","A","-"],["-","-","-","A"]]) == false
+        assert Check.check_diagonal([["A","-","-","-"], ["-","A","-","-"],["-","-","A","-"],["-","-","-","A"]], :decline) == false
     end
 end
