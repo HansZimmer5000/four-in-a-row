@@ -15,9 +15,9 @@ defmodule Game do
     game_round(field)
   end
 
-  def game_round(_field) do
-    #print_field
-    #get_input
+  def game_round(field) do
+    IO.puts(Field.to_string(field))
+    _input = get_input()
     #insert_token
     #check_win
     #game_round
