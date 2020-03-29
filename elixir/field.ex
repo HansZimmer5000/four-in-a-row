@@ -18,6 +18,26 @@ defmodule Field do
         _to_string(field, "")
     end
 
+    def insert_token({field, _}, column_number, player_token) do
+        _insert_token(field, column_number-1, player_token)
+    end
+
+    def _insert_token([row | rest_rows], column_index, player_token) do
+        "c"
+    end
+
+    def _insert_token_column([], akku, _) do
+        akku
+    end
+
+    def _insert_token_column(["-" | rest_column],akku, player_token) do
+        akku ++ [player_token | rest_column]
+    end
+
+    def _insert_token_column([token | rest_column], akku, player_token) do
+        _insert_token_column(rest_column, akku ++ [token], player_token)
+    end
+
     ##################
     # HELPER FUNCTIONS
     ##################
