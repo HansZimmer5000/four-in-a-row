@@ -18,24 +18,30 @@ defmodule Field do
         _to_string(field, "")
     end
 
-    def insert_token({field, _}, column_number, player_token) do
-        _insert_token(field, column_number-1, player_token)
+    def insert_token({field, size}, column_number, player_token) do
+        new_field = _insert_token(field, column_number-1, player_token, [])
+        {new_field, size}
     end
 
-    def _insert_token([row | rest_rows], column_index, player_token) do
-        "c"
+    def _insert_token([column | rest_columns], 0, player_token, akku) do
+        new_column = _insert_token_to_column(column, player_token, [])
+        akku ++ [new_column | rest_columns]
     end
 
-    def _insert_token_column([], akku, _) do
+    def _insert_token([column | rest_columns], column_index, player_token, akku) do
+        _insert_token(rest_columns, column_index-1, player_token, akku ++ [column])
+    end
+
+    def _insert_token_to_column([], _, akku) do
         akku
     end
 
-    def _insert_token_column(["-" | rest_column],akku, player_token) do
+    def _insert_token_to_column(["-" | rest_column], player_token, akku) do
         akku ++ [player_token | rest_column]
     end
 
-    def _insert_token_column([token | rest_column], akku, player_token) do
-        _insert_token_column(rest_column, akku ++ [token], player_token)
+    def _insert_token_to_column([elem | rest_column], player_token, akku) do
+        _insert_token_to_column(rest_column, player_token, akku ++ [elem])
     end
 
     ##################
