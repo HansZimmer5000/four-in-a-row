@@ -5,32 +5,30 @@ defmodule Check do
     end
     
     def check_horizontal([row | rest_rows]) do
-        if (length row) >= 4 do
-            result = _check_horizontal(row)
-            if result do
-                result
-            else
-                check_horizontal(rest_rows)
-            end
-        else 
-            false
+        result = _check_horizontal(row)
+        if result do
+            result
+        else
+            check_horizontal(rest_rows)
         end
     end
 
-    def _check_horizontal(list) when (length list) < 4 do
+    def _check_horizontal([ elem, elem, elem, elem | _row_rest ]) when elem != "-" do
+        true
+    end
+
+    def _check_horizontal([ _ | row_rest]) when (length row_rest) >= 4 do
+        _check_horizontal(row_rest)
+    end
+
+    def _check_horizontal(_) do
         false
     end
 
-    def _check_horizontal([ row_head | row_rest ]) do
-        if row_head != "-" and 
-            row_head == get_elem(row_rest,0) and
-            row_head == get_elem(row_rest,1) and
-            row_head == get_elem(row_rest,2) do
-            true
-        else 
-            _check_horizontal(row_rest)
-        end
-    end
+
+
+
+
 
     def get_elem([head | _ ], 0) do
         head
