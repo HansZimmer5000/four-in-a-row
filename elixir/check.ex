@@ -4,7 +4,7 @@ defmodule Check do
         check_horizontal(rows) || check_vertical(rows) || check_incline(rows) || check_decline(rows)
     end
 
-    ###
+    ### TODO Refactor following code
 
     def check_horizontal([]) do
         false
