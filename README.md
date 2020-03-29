@@ -14,6 +14,5 @@ MUST-Haves: Things that are important and are done asap. <br>
 SHOULD-Haves: Things that are less important and should be done when time is existent. <br>
 NICE-To-Haves: Things that are not important and maybe done when time is existent. <br>
 
-- [SHOULD]: Elixir Version
 - [NICE]: Prolog Version
 
