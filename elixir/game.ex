@@ -11,7 +11,7 @@ defmodule Game do
       iex> Game.start_game
   """
   def start_game do
-    field=Field.init_field(7,6)
+    field=Field.init(7,6)
     game_round(field)
   end
 
