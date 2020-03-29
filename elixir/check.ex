@@ -13,6 +13,31 @@ defmodule Check do
         end
     end
 
+    def check_vertical(rows) when (length rows) < 4 do
+        false
+    end
+
+    def check_vertical([row_1,row_2,row_3,row_4 | rest_rows]) do
+        # Traverse columns to rows
+
+        # use check_horizontal
+        if _check_vertical(row_1,row_2,row_3,row_4) do
+            true
+        else
+            check_vertical([row_2,row_3,row_4|rest_rows])
+        end
+    end
+
+    def check_incline([row | rest_rows]) do
+        false
+    end
+
+    def check_decline([row | rest_rows]) do
+        false
+    end
+
+    # HELPER FUNCTIONS
+
     def _check_horizontal([ elem, elem, elem, elem | _row_rest ]) when elem != "-" do
         true
     end
@@ -26,6 +51,17 @@ defmodule Check do
     end
 
 
+    def _check_vertical([],[],[],[]) do
+        false
+    end
+    
+    def _check_vertical([elem | _], [elem | _], [elem | _], [elem | _]) when elem != "-" do
+        true
+    end
+
+    def _check_vertical([_ | rest_1], [_ | rest_2], [_ | rest_3], [_ | rest_4]) do
+        _check_vertical(rest_1, rest_2, rest_3, rest_4)
+    end
 
 
 
