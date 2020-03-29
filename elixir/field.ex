@@ -14,6 +14,10 @@ defmodule Field do
         "Width and Height must be at least 4 but was: #{width}x#{height}"
     end
 
+    ##################
+    # HELPER FUNCTIONS
+    ##################
+
     def _init_row(0, row) do
         row
     end

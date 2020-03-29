@@ -1,4 +1,4 @@
-Code.compile_file("./field.ex")
+Code.compile_file("field.ex")
 
 defmodule Game do
   @moduledoc """
@@ -11,7 +11,20 @@ defmodule Game do
       iex> Game.start_game
   """
   def start_game do
-    #init_field
+    field=Field.init_field(7,6)
+    game_round(field)
+  end
+
+  def game_round(_field) do
+    #print_field
+    #get_input
+    #insert_token
+    #check_win
     #game_round
+  end
+
+  def get_input() do
+    input = IO.gets("Insert Number between 1 and 7: ")
+    String.replace(input, "\n", "")
   end
 end

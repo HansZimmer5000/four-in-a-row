@@ -5,3 +5,13 @@ ExUnit.start()
 
 Code.require_file "field_test.exs"
 Code.require_file "check_test.exs"
+
+Code.compile_file("game.ex")
+defmodule GameTests do
+    use ExUnit.Case
+
+    test "get_input" do
+        IO.puts("Insert 1 next:")
+        assert Game.get_input() == "1"
+    end
+end
