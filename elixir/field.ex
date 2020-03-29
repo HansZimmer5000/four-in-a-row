@@ -5,8 +5,8 @@ defmodule Field do
     end
 
     def init(width, height) when width >= 4 and height >= 4 do
-        template_row = _init_row(width, [])
-        field = _init(height, template_row, [])
+        template_column = _init_column(height, [])
+        field = _init(width, template_column, [])
         {field, {width,height}}
     end
 
@@ -42,47 +42,54 @@ defmodule Field do
     # HELPER FUNCTIONS
     ##################
 
-    def _init_row(0, row) do
-        row
+    def _init_column(0, column) do
+        column
     end
 
-    def _init_row(width_rest, row) do
-        new_row = row ++ [get_empty_token()]
-        _init_row(width_rest-1, new_row)
+    def _init_column(height_rest, column) do
+        new_column = column ++ [get_empty_token()]
+        _init_column(height_rest-1, new_column)
     end
 
     def _init(0, _, field) do
         field
     end
 
-    def _init(height_rest, template_row, field) do
-        new_field = [template_row | field]
-        _init(height_rest-1, template_row, new_field)
+    def _init(width_rest, template_column, field) do
+        new_field = [template_column | field]
+        _init(width_rest-1, template_column, new_field)
     end
 
     def _to_string([], text) do
         text
     end
 
-    def _to_string([row | rest_rows], "") do
-        row_text = _to_string_row(row, "")
-        _to_string(rest_rows, "#{row_text}")
+    def _to_string(columns, text) do
+        {row_text, rest_columns} = _get_first_of_every_list(columns, "", [])
+        cond do
+            text == "" ->
+                _to_string(rest_columns, "#{row_text}")
+            row_text == "" ->
+                _to_string(rest_columns, "#{text}")
+            true ->
+                _to_string(rest_columns, "#{row_text}\n#{text}")
+        end
     end
 
-    def _to_string([row | rest_rows], text) do
-        row_text = _to_string_row(row, "")
-        _to_string(rest_rows, "#{row_text}\n#{text}")
+    def _get_first_of_every_list([], text, rest_lists) do
+        {text, rest_lists}
     end
 
-    def _to_string_row([],text) do
-        text
+    def _get_first_of_every_list([[] | _], text, rest_lists) do
+        {text, rest_lists}
     end
 
-    def _to_string_row([elem | rest], "") do
-        _to_string_row(rest, "#{elem}")
+    def _get_first_of_every_list([[elem | rest_column_1] | rest_columns], text, rest_lists) do
+        if text == "" do
+            _get_first_of_every_list(rest_columns, "#{elem}", rest_lists ++ [rest_column_1])
+        else
+            _get_first_of_every_list(rest_columns, "#{text} #{elem}", rest_lists ++ [rest_column_1])
+        end
     end
 
-    def _to_string_row([elem | rest], text) do
-        _to_string_row(rest, "#{text} #{elem}")
-    end
 end
