@@ -42,7 +42,7 @@ defmodule Check do
         # Traverse columns to rows
 
         # use check_horizontal
-        if _check_incline(row_1,row_2,row_3,row_4) do
+        if _check_diagonal(row_1,row_2,row_3,row_4, :incline) do
             true
         else
             check_incline([row_2,row_3,row_4|rest_rows])
@@ -57,7 +57,7 @@ defmodule Check do
         # Traverse columns to rows
 
         # use check_horizontal
-        if _check_decline(row_1,row_2,row_3,row_4) do
+        if _check_diagonal(row_1,row_2,row_3,row_4, :decline) do
             true
         else
             check_decline([row_2,row_3,row_4|rest_rows])
@@ -94,28 +94,19 @@ defmodule Check do
     end
 
 
-    def _check_incline([elem | _], [_, elem | _], [_,_,elem | _], [_,_,_,elem | _]) when elem != "-" do
+    def _check_diagonal([elem | _], [_, elem | _], [_,_,elem | _], [_,_,_,elem | _], :incline) when elem != "-" do
         true
     end
 
-    def _check_incline([_ | rest_1], [_ | rest_2], [_ | rest_3], [_ | rest_4]) do
-        _check_incline(rest_1, rest_2, rest_3, rest_4)
-    end
-
-    def _check_incline(_,_,_,_) do
-        false
-    end
-
-
-    def _check_decline([_,_,_,elem | _], [_,_,elem | _], [_,elem | _], [elem | _]) when elem != "-" do
+    def _check_diagonal([_,_,_,elem | _], [_,_,elem | _], [_,elem | _], [elem | _], :decline) when elem != "-" do
         true
     end
 
-    def _check_decline([_ | rest_1], [_ | rest_2], [_ | rest_3], [_ | rest_4]) do
-        _check_decline(rest_1, rest_2, rest_3, rest_4)
+    def _check_diagonal([_ | rest_1], [_ | rest_2], [_ | rest_3], [_ | rest_4], diagonal) do
+        _check_diagonal(rest_1, rest_2, rest_3, rest_4, diagonal)
     end
 
-    def _check_decline(_,_,_,_) do
+    def _check_diagonal(_,_,_,_,_) do
         false
     end
 
