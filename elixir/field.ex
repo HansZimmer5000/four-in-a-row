@@ -23,27 +23,6 @@ defmodule Field do
         {new_field, size}
     end
 
-    def _insert_token([column | rest_columns], 0, player_token, akku) do
-        new_column = _insert_token_to_column(column, player_token, [])
-        akku ++ [new_column | rest_columns]
-    end
-
-    def _insert_token([column | rest_columns], column_index, player_token, akku) do
-        _insert_token(rest_columns, column_index-1, player_token, akku ++ [column])
-    end
-
-    def _insert_token_to_column([], _, akku) do
-        akku
-    end
-
-    def _insert_token_to_column(["-" | rest_column], player_token, akku) do
-        akku ++ [player_token | rest_column]
-    end
-
-    def _insert_token_to_column([elem | rest_column], player_token, akku) do
-        _insert_token_to_column(rest_column, player_token, akku ++ [elem])
-    end
-
     ##################
     # HELPER FUNCTIONS
     ##################
@@ -96,6 +75,27 @@ defmodule Field do
         else
             _get_first_of_every_list(rest_columns, "#{text} #{elem}", rest_lists ++ [rest_column_1])
         end
+    end
+
+    def _insert_token([column | rest_columns], 0, player_token, akku) do
+        new_column = _insert_token_to_column(column, player_token, [])
+        akku ++ [new_column | rest_columns]
+    end
+
+    def _insert_token([column | rest_columns], column_index, player_token, akku) do
+        _insert_token(rest_columns, column_index-1, player_token, akku ++ [column])
+    end
+
+    def _insert_token_to_column([], _, akku) do
+        akku
+    end
+
+    def _insert_token_to_column(["-" | rest_column], player_token, akku) do
+        akku ++ [player_token | rest_column]
+    end
+
+    def _insert_token_to_column([elem | rest_column], player_token, akku) do
+        _insert_token_to_column(rest_column, player_token, akku ++ [elem])
     end
 
 end

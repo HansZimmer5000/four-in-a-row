@@ -1,7 +1,7 @@
 defmodule Check do
 
-    def check_win(rows) do
-        check_horizontal(rows) || check_vertical(rows) || check_diagonal(rows, :incline) || check_diagonal(rows, :diagonal)
+    def check_win({field, _size}) do
+        check_horizontal(field) || check_vertical(field) || check_diagonal(field, :incline) || check_diagonal(field, :diagonal)
     end
 
     ### TODO Refactor following code
