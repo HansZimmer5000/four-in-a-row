@@ -113,13 +113,4 @@ defmodule Check do
         false
     end
 
-
-    def get_elem([head | _ ], 0) do
-        head
-    end
-
-    def get_elem([_ | rest], index) when index > 0 do
-        get_elem(rest, index-1)
-    end
-
 end
