@@ -12,7 +12,7 @@ int returnone(void){
     return d.dzug;
 }
 
-int returnparamone(char * argv){
+int returnasnum(char * argv){
     int res;
     res = atoi(argv);
     return res;

@@ -8,11 +8,12 @@ int main(void){
     assert(0 == returnone());
 
     char * d = "1";
-    assert(1 == returnparamone(d));
+    assert(1 == returnasnum(d));
 
-    printf("%d\n", d);
-    printf("%d\n", *d);
-    printf("%d\n", &d);
+    char e = "1";
+    printf("%d\n", e); // Value
+    //printf("%d\n", *e); // Value unter Value
+    printf("%d\n", &e); // Value Location?
 
     return 0;
 }
