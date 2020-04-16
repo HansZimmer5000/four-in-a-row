@@ -1,4 +1,6 @@
-#include<stdio.h>
 
+int main(void){
+    //Start game
 
-
+    return 0;
+}
