@@ -1,19 +1,24 @@
 #include <stdio.h>
 #include <assert.h>
-#include "logic.c"
+#include "gamefield.c"
 
 int main(void){
-    printf("Hallo\n");
+    printf("Start Test\n");
 
-    assert(0 == returnone());
+    gameField d = init_field();
+    print_field(d);
 
-    char * d = "1";
-    assert(1 == returnasnum(d));
+    //assert(0 == returnone());
 
-    char e = "1";
-    printf("%d\n", e); // Value
-    //printf("%d\n", *e); // Value unter Value
-    printf("%d\n", &e); // Value Location?
+    //char * d = "1";
+    //assert(1 == returnasnum(d));
 
     return 0;
 }
+
+/*
+char e = 1;
+printf("%d\n", e); // Value
+//printf("%d\n", *e); // Value unter Value
+printf("%d\n", &e); // Value Location?
+*/

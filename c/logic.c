@@ -1,19 +1,8 @@
 #include<stdlib.h>
+#include"gamefield.c"
 
 enum token {A=0, B=1};
 
-typedef struct gameField {
-    int dzug;
-} gameFieldAlias;
-
-int returnone(void){
-    gameFieldAlias d;
-    d.dzug = 0;
-    return d.dzug;
-}
-
-int returnasnum(char * argv){
-    int res;
-    res = atoi(argv);
-    return res;
+void start_game(void){
+    
 }
