@@ -1,5 +1,4 @@
 #include"gamefield.c"
-#include"check.c"
 
 enum token {A='A', B='B'};
 

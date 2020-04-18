@@ -11,7 +11,8 @@ int main(void){
     gameField new_field = insert_token(d, 2, 'A');
     assert(65 == new_field.field[1][0]);
 
-    //assert(0 == returnone());
+    int win = check(new_field, 'A');
+    assert(0 == win);
 
     //char * d = "1";
     //assert(1 == returnasnum(d));
