@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
-#include <stdlib.h>
-#include "logic.c"
+#include "check.c"
 
 int main(void){
     printf("Start Test\n");
