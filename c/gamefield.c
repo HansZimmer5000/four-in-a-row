@@ -35,5 +35,5 @@ gameField insert_token(gameField field, int column_number, int player_token){
 }
 
 int check(gameField field, int current_player_token){
-    return 0;
+    return 0; //TODO
 }

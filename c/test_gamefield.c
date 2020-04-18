@@ -14,9 +14,6 @@ int main(void){
     int win = check(new_field, 'A');
     assert(0 == win);
 
-    //char * d = "1";
-    //assert(1 == returnasnum(d));
-
     return 0;
 }
 
