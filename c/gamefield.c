@@ -5,11 +5,7 @@ typedef struct gameField {
 } gameField;
 
 gameField init_field(void){
-    gameField field;
-    field.field[0][0] = 0;
-    field.field[0][1] = 0; //1;
-    field.field[1][0] = 0; //2;
-    field.field[1][1] = 0; //3;
+    gameField field = {0,0,0,0};
     return field;
 }
 
@@ -34,11 +30,28 @@ gameField insert_token(gameField field, int column_number, int player_token){
     return field;
 }
 
+int * get_column(gameField * field, int column_index){
+    return field->field[column_index];
+}
+
+int get_width(gameField field){
+    return (sizeof field.field);
+}
+
+int get_height(gameField field){
+    return (sizeof field.field[0]);
+}
+
+// CHECKS
+
 int check_horizontal(gameField field, int current_player_token){
     return 0;
 }
 
 int check_vertical(gameField field, int current_player_token){
+    for (int col_index = 0; col_index < get_width(field); col_index++){
+        
+    }
     return 0;
 }
 
