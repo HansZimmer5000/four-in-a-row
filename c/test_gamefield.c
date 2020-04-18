@@ -8,6 +8,9 @@ int main(void){
     gameField d = init_field();
     print_field(d);
 
+    gameField new_field = insert_token(d, 1, 42);
+    assert(42 == new_field.field[1][0]);
+
     //assert(0 == returnone());
 
     //char * d = "1";

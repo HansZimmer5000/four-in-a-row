@@ -7,9 +7,9 @@ typedef struct gameField {
 gameField init_field(void){
     gameField field;
     field.field[0][0] = 0;
-    field.field[0][1] = 1;
-    field.field[1][0] = 2;
-    field.field[1][1] = 3;
+    field.field[0][1] = 0; //1;
+    field.field[1][0] = 0; //2;
+    field.field[1][1] = 0; //3;
     return field;
 }
 
@@ -22,7 +22,13 @@ void print_field(gameField field){
     }
 }
 
-void insert_token(gameField field, int column_number){
-    //int column[] = field.field[column_number];
-    
+gameField insert_token(gameField field, int column_number, int player_token){
+    for (int i = 0; i < 2; i++){
+        int token = field.field[column_number][i];
+        if (token == 0){
+            field.field[column_number][i]=player_token;
+            break;
+        }
+    }
+    return field;
 }
