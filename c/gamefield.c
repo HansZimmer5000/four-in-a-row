@@ -34,6 +34,37 @@ gameField insert_token(gameField field, int column_number, int player_token){
     return field;
 }
 
-int check(gameField field, int current_player_token){
-    return 0; //TODO
+int check_horizontal(gameField field, int current_player_token){
+    return 0;
 }
+
+int check_vertical(gameField field, int current_player_token){
+    return 0;
+}
+
+int check_incline(gameField field, int current_player_token){
+    return 0;
+}
+
+int check_decline(gameField field, int current_player_token){
+    return 0;
+}
+
+int check(gameField field, int current_player_token){
+    //int width = (sizeof field.field[0][0]);
+    //int height = (sizeof field.field[0]);
+   
+    int win = check_horizontal(field, current_player_token);
+    if (win == 0){
+        win = check_vertical(field, current_player_token);
+        if (win == 0){
+            win = check_incline(field, current_player_token);
+            if (win == 0){
+                win = check_decline(field, current_player_token);
+            } 
+        } 
+    } 
+
+    return win;
+}
+
