@@ -33,3 +33,7 @@ gameField insert_token(gameField field, int column_number, int player_token){
     }
     return field;
 }
+
+int check(gameField field, int current_player_token){
+    return 0;
+}
