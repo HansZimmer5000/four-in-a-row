@@ -3,7 +3,7 @@
 #include "check.c"
 
 int main(void){
-    printf("Start Test\n");
+    printf("Start Check Test\n");
 
     //;
 

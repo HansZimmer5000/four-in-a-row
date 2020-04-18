@@ -3,7 +3,7 @@
 #include "gamefield.c"
 
 int main(void){
-    printf("Start Test\n");
+    printf("Start Gamefield Test\n");
 
     gameField d = init_field();
     print_field(d);

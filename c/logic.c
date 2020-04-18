@@ -11,6 +11,8 @@ void game_round(void){
 
 }
 
-void get_input(void){
-
+int get_input(void){
+    int column_number;
+    scanf("%d", &column_number);
+    return column_number;
 }
