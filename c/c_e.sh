@@ -10,3 +10,4 @@ execute_test(){
 }
 
 execute_test "test_gamefield.c"
+execute_test "test_logic.c"
