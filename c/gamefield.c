@@ -23,10 +23,11 @@ void print_field(gameField field){
 }
 
 gameField insert_token(gameField field, int column_number, int player_token){
+    int column_index = column_number-1;
     for (int i = 0; i < 2; i++){
-        int token = field.field[column_number][i];
+        int token = field.field[column_index][i];
         if (token == 0){
-            field.field[column_number][i]=player_token;
+            field.field[column_index][i]=player_token;
             break;
         }
     }
