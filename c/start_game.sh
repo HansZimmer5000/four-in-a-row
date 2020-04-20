@@ -3,7 +3,8 @@
 set -e
 
 start_game(){
-    gcc $1 -o game.c
+    gcc game.c -o game.out
+    ./game.out
 }
 
 start_game 

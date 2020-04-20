@@ -23,7 +23,12 @@ gameField init_field(void){
 void print_field(gameField field){
     for (int row_index = field.height-1; row_index >= 0; row_index--){
         for (int col_index = 0; col_index < field.width; col_index++) {
-            printf("%d ", field.field[col_index][row_index]);
+            int value = field.field[col_index][row_index];
+            if (value >= 42){
+                printf("%c ", value);
+            } else {
+                printf("%d ", value);
+            }
         }
         printf("\n");
     }
