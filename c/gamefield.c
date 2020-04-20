@@ -46,14 +46,6 @@ int * get_column(gameField field, int column_index){
     return col;
 }
 
-int get_width(gameField field){
-    return (sizeof field.field);
-}
-
-int get_height(gameField field){
-    return (sizeof field.field[0]);
-}
-
 // CHECKS
 
 int check_horizontal(gameField field, int current_player_token){
@@ -62,9 +54,9 @@ int check_horizontal(gameField field, int current_player_token){
 
 int check_vertical(gameField field, int current_player_token){
     int * col;
-    for (int col_index = 0; col_index < get_width(field); col_index++){
+    for (int col_index = 0; col_index < field.width; col_index++){
         col = get_column(field, col_index);
-        for (int row_index = 0; row_index < (get_height(field)-3); row_index++){
+        for (int row_index = 0; row_index < (field.height-3); row_index++){
             if (col[row_index] == current_player_token && 
                 col[row_index] == col[row_index + 1] &&
                 col[row_index] == col[row_index + 2] &&
