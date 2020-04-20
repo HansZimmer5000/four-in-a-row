@@ -49,6 +49,16 @@ int * get_column(gameField field, int column_index){
 // CHECKS
 
 int check_horizontal(gameField field, int current_player_token){
+    for (int col_index = 0; col_index < (field.width-3); col_index++){
+        for (int row_index = 0; row_index < field.height; row_index++){
+            if (field.field[col_index][row_index] == current_player_token && 
+                field.field[col_index][row_index] == field.field[col_index + 1][row_index] &&
+                field.field[col_index][row_index] == field.field[col_index + 2][row_index] &&
+                field.field[col_index][row_index] == field.field[col_index + 3][row_index]){
+                    return 1;
+            }
+        }
+    }
     return 0;
 }
 

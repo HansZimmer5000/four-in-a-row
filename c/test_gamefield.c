@@ -7,9 +7,27 @@ void test_check_vertical(void){
     int width = 2;
     //TODO Field is still a 7x6 array, make dynamic in the future. 
     //TODO Since field is still a 7x6 array, -1 is on [0][5] (col 1, row 6), a location which will not be visible in a 5x2 field.
-    gameField field = {height,width,1,1,1,1,1,-1,0,65,65,65,65};
+    int platzhalter= -1;
+    gameField field = {height,width,1,1,1,1,1,platzhalter,0,65,65,65,65};
     int win = check_vertical(field, 65);
     assert(1 == win);
+}
+
+void test_check_horizontal(void){
+    int height = 2;
+    int width = 5;
+    // TODO like in test_check_vertical
+    int platzhalter= -1;
+    gameField field = {height, width, 
+        0,5,platzhalter,platzhalter,platzhalter,platzhalter,
+        1,65,platzhalter,platzhalter,platzhalter,platzhalter,
+        2,65,platzhalter,platzhalter,platzhalter,platzhalter,
+        3,65,platzhalter,platzhalter,platzhalter,platzhalter,
+        4,65,platzhalter,platzhalter,platzhalter,platzhalter};
+
+        int win = check_horizontal(field, 65);
+        print_field(field);
+        assert(1 == win);
 }
 
 int main(void){
@@ -25,6 +43,7 @@ int main(void){
     assert(0 == win);
 
     test_check_vertical();
+    test_check_horizontal();
 
     return 0;
 }
