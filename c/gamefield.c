@@ -1,14 +1,18 @@
 #include<stdio.h>
 
 typedef struct gameField {
+    int height;
+    int width;
     int field[7][6];
 } gameField;
 
 gameField init_field(void){
     gameField field;
+    field.height = 6;
+    field.width = 7;
 
-    for (int col_index = 0; col_index < 7; col_index++){
-        for (int row_index = 0; row_index < 6; row_index++){
+    for (int col_index = 0; col_index < field.width; col_index++){
+        for (int row_index = 0; row_index < field.height; row_index++){
             field.field[col_index][row_index] = 0;
         }
     }
@@ -17,9 +21,9 @@ gameField init_field(void){
 }
 
 void print_field(gameField field){
-    for (int i = 5; i >= 0; i--){
-        for (int j = 0; j < 7; j++) {
-            printf("%d ", field.field[j][i]);
+    for (int row_index = field.height-1; row_index >= 0; row_index--){
+        for (int col_index = 0; col_index < field.width; col_index++) {
+            printf("%d ", field.field[col_index][row_index]);
         }
         printf("\n");
     }
@@ -57,8 +61,17 @@ int check_horizontal(gameField field, int current_player_token){
 }
 
 int check_vertical(gameField field, int current_player_token){
+    int * col;
     for (int col_index = 0; col_index < get_width(field); col_index++){
-        
+        col = get_column(field, col_index);
+        for (int row_index = 0; row_index < (get_height(field)-3); row_index++){
+            if (col[row_index] == current_player_token && 
+                col[row_index] == col[row_index + 1] &&
+                col[row_index] == col[row_index + 2] &&
+                col[row_index] == col[row_index + 3]){
+                    return 1;
+            }
+        }
     }
     return 0;
 }
