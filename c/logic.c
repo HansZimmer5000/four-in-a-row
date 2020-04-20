@@ -25,3 +25,8 @@ void game_round(gameField field, int current_player_token){
         }
     }
 }
+
+void start_game(void) {
+    gameField field = init_field();
+    game_round(field, A);
+}

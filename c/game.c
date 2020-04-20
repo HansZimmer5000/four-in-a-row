@@ -1,6 +1,7 @@
+#include "logic.c"
 
 int main(void){
-    //Start game
+    start_game();
 
     return 0;
 }
