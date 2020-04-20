@@ -79,10 +79,30 @@ int check_vertical(gameField field, int current_player_token){
 }
 
 int check_incline(gameField field, int current_player_token){
+    for (int col_index = 0; col_index < (field.width-3); col_index++){
+        for (int row_index = 0; row_index < (field.height-3); row_index++){
+            if (field.field[col_index][row_index] == current_player_token && 
+                field.field[col_index][row_index] == field.field[col_index + 1][row_index + 1] &&
+                field.field[col_index][row_index] == field.field[col_index + 2][row_index + 2] &&
+                field.field[col_index][row_index] == field.field[col_index + 3][row_index + 3]){
+                    return 1;
+            }
+        }
+    }
     return 0;
 }
 
 int check_decline(gameField field, int current_player_token){
+    for (int col_index = 3; col_index < field.width; col_index++){
+        for (int row_index = 0; row_index < (field.height-3); row_index++){
+            if (field.field[col_index][row_index] == current_player_token && 
+                field.field[col_index][row_index] == field.field[col_index - 1][row_index + 1] &&
+                field.field[col_index][row_index] == field.field[col_index - 2][row_index + 2] &&
+                field.field[col_index][row_index] == field.field[col_index - 3][row_index + 3]){
+                    return 1;
+            }
+        }
+    }
     return 0;
 }
 

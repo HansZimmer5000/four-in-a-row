@@ -25,9 +25,40 @@ void test_check_horizontal(void){
         3,65,platzhalter,platzhalter,platzhalter,platzhalter,
         4,65,platzhalter,platzhalter,platzhalter,platzhalter};
 
-        int win = check_horizontal(field, 65);
-        print_field(field);
-        assert(1 == win);
+    int win = check_horizontal(field, 65);
+    assert(1 == win);
+}
+
+void test_check_incline(void){
+    int height = 5;
+    int width = 5;
+    // TODO like in test_check_vertical
+    int platzhalter= -1;
+    gameField field = {height, width, 
+        0,5,11,11,11,platzhalter,
+        1,65,22,22,22,platzhalter,
+        2,6,65,33,33,platzhalter,
+        3,7,44,65,44,platzhalter,
+        4,8,55,55,65,platzhalter};
+
+    int win = check_incline(field, 65);
+    assert(1 == win);
+}
+
+void test_check_decline(void){
+    int height = 5;
+    int width = 5;
+    // TODO like in test_check_vertical
+    int platzhalter= -1;
+    gameField field = {height, width, 
+        0,5,11,11,11,platzhalter,
+        1,6,22,22,65,platzhalter,
+        2,7,33,65,33,platzhalter,
+        3,8,65,44,44,platzhalter,
+        4,65,55,55,55,platzhalter};
+
+    int win = check_decline(field, 65);
+    assert(1 == win);
 }
 
 int main(void){
@@ -44,6 +75,8 @@ int main(void){
 
     test_check_vertical();
     test_check_horizontal();
+    test_check_incline();
+    test_check_decline();
 
     return 0;
 }
