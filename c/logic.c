@@ -8,6 +8,15 @@ int get_input(void){
     return column_number;
 }
 
+int switch_player(int current_player_token){
+    int next_player = A;
+    
+    if (A == current_player_token){
+        next_player = B;
+    } 
+    return next_player;
+}
+
 void game_round(gameField field, int current_player_token){
     printf("Insert Column Number: \n");
     int column_number = get_input();
@@ -18,11 +27,7 @@ void game_round(gameField field, int current_player_token){
     if (player_won == 1){
         printf("Player %c won!\n", current_player_token);
     } else {
-        if (A == current_player_token){
-            game_round(new_field, B);
-        } else {
-            game_round(new_field, A);
-        }
+        game_round(new_field, switch_player(current_player_token));
     }
 }
 
