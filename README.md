@@ -14,6 +14,6 @@ MUST-Haves: Things that are important and are done asap. <br>
 SHOULD-Haves: Things that are less important and should be done when time is existent. <br>
 NICE-To-Haves: Things that are not important and maybe done when time is existent. <br>
 
-- [SHOULD]: C Version (to learn C for a nother project)
+- [MUST]: Go Version 
 - [NICE]: Prolog Version
 
